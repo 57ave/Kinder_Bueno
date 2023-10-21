@@ -1,0 +1,62 @@
+name: corewar
+
+on:
+  push:
+    branches-ignore:
+      - "ga-ignore-**"
+  pull_request:
+    branches-ignore:
+      - "ga-ignore-**"
+
+env:
+  EXECUTABLES: server
+
+jobs:
+  check_coding_style:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/epitech/coding-style-checker:latest
+    env:
+      REPORT_FILENAME: coding-style-reports.log
+    steps:
+      - name: Get repo
+        uses: actions/checkout@v3
+      - name: Checking
+        run: |
+          check.sh $(pwd) $(pwd)
+          cat $REPORT_FILENAME | while read LINE; do
+              TYPE=$(echo $LINE | cut -d ':' -f 3 | tr -d ' ')
+              FILE=$(echo $LINE | cut -d ':' -f 1)
+              AT=$(echo $LINE | cut -d ':' -f 2)
+              ERROR=$(echo $LINE | cut -d ':' -f 4)
+              echo "::error file=$FILE,line=$AT,title=$TYPE coding style error::$ERROR"
+          done
+          if [[ -s $REPORT_FILENAME ]]; then
+            exit 1
+          fi
+
+  check_program_compilation:
+    needs: [check_coding_style]
+    runs-on: ubuntu-latest
+    container:
+      image: epitechcontent/epitest-docker
+
+    steps:
+      - name: Get repo
+        uses: actions/checkout@v3
+      - name: Building
+        timeout-minutes: 2
+        run: make
+      - name: Clean
+        run: make clean
+      - name: check_executables
+        run: |
+          EXECS=(${EXECUTABLES//,/ })
+
+          for file in ${EXECS[@]}; do
+            if [ ! -x $file ]; then
+              echo "::error title=Exec not found $file::"
+              exit 1
+            fi
+          done
+

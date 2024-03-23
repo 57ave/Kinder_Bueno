@@ -1,2 +1,2 @@
 # Kinder_Bueno
-little network game to learn socket library
+To improve my network knowledge in C i decided to create my own server to use it on my future project

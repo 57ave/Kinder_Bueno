@@ -5,40 +5,20 @@
 ## my_server
 ##
 
-NAME =	server
-
-CPPFLAGS += -iquote "include"	\
-
-CFLAGS = -Wall -Wextra
-
-CSFMLINK = 	-lcsfml-graphics	\
-			-lcsfml-window	\
-			-lcsfml-system	\
-
-SRC	=	src/main.c 	\
-		src/networking/my_server.c	\
-		src/networking/create_adress.c	\
-		src/graphic/run_window.c \
-		src/graphic/main_event.c \
-
-
-OBJ = 	$(SRC:.c=.o)
-
-OBJ_TEST = $(TEST)
-
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(CSFMLINK)
+all:
+	make -C server
+	make -C client
 
 clean:
-	$(RM) $(OBJ)
+	make -C server clean
+	make -C client clean
 
-fclean: clean
-	$(RM) $(NAME)
+fclean:
+	make -C server fclean
+	make -C client fclean
 
-debug: CFLAGS += -g3
-debug: all
+debug: 	make -C server debug
+debug: 	make -C client debug
 
 re: fclean all
 

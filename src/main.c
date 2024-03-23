@@ -11,7 +11,7 @@
 
 int main(void)
 {
-    //my_server();
-    window_loop();
+    my_server();
+    //window_loop();
     return EXIT_SUCCESS;
 }

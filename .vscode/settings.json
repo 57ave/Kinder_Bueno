@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "string.h": "c",
+        "my_socket.h": "c",
+        "time.h": "c",
+        "in.h": "c",
+        "stdbool.h": "c"
+    }
+}

@@ -9,8 +9,7 @@ on:
       - "ga-ignore-**"
 
 env:
-  MIRROR_URL: git@github.com:EpitechPromo2027/B-CPE-200-PAR-2-1-corewar-adam.deziri.git
-  EXECUTABLES: asm/asm,corewar/corewar
+  EXECUTABLES: server/server,client/client
 
 jobs:
   check_coding_style:

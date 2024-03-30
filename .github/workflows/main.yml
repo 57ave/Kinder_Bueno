@@ -37,7 +37,6 @@ jobs:
           fi
 
   check_program_compilation:
-    needs: [check_coding_style]
     runs-on: ubuntu-latest
     container:
       image: epitechcontent/epitest-docker
@@ -62,7 +61,6 @@ jobs:
           done
 
   run_tests:
-    needs: [check_program_compilation]
     runs-on: ubuntu-latest
     container:
       image: epitechcontent/epitest-docker

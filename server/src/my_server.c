@@ -37,6 +37,7 @@ int my_server(void)
     serv.addr.sin_port = htons(PORT);
     serv.addr.sin_addr.s_addr = INADDR_ANY;
     serv.addrlen = sizeof(struct sockaddr_in);
+    printf("fd %i\n", serv.server_fd);
     if (serv.server_fd == EXIT_FAIL) {
         perror("Socket creation failed");
         return EXIT_FAIL;

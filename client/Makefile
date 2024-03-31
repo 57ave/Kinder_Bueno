@@ -2,7 +2,7 @@
 ## EPITECH PROJECT, 2023
 ## Makefile
 ## File description:
-## my_server
+## Makfile Client
 ##
 
 NAME =	client
@@ -14,6 +14,10 @@ CFLAGS = -Wall -Wextra
 SRC	=	src/main.c 	\
 		src/my_client.c	\
 
+LDFLAGS += -lmy
+
+LDLIBS += -L../
+
 CC	=	clang
 
 OBJ = 	$(SRC:.c=.o)
@@ -21,7 +25,7 @@ OBJ = 	$(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+	$(CC) $(OBJ) -o $(NAME) $(LDLIBS) $(LDFLAGS)
 
 clean:
 	$(RM) $(OBJ)

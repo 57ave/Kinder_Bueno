@@ -1,1 +1,5 @@
 *.o
+*.a
+*_test
+server
+client

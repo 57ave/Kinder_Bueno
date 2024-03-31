@@ -1,5 +1,5 @@
 *.o
 *.a
 *_test
-server
-client
+./server/server
+./client/client

@@ -25,14 +25,15 @@ void intialize_fdset(struct server_in *serv)
 
 int update_clients(struct server_in *serv)
 {
-    int max_socket = 0;
+    int max_socket = serv->server_fd;
     int socket_fd = 0;
 
+    FD_SET(serv->server_fd, &(serv->readfds));
     for (int i = 0; i < MAX_CLIENTS; i++) {
         socket_fd = serv->clients[i].sock_fd;
-        if (serv->clients->connect == true) {
+        if (serv->clients[i].connect) {
             FD_SET(socket_fd, &(serv->readfds));
-            serv->clients->connect = true;
+            serv->clients[i].connect = true;
         }
         if (max_socket < socket_fd) {
             max_socket = socket_fd;
@@ -44,21 +45,21 @@ int update_clients(struct server_in *serv)
 void find_active_client(struct server_in *serv)
 {
     for (int i = 0; i < MAX_CLIENTS; i++) {
-        if (serv->clients->connect == true &&
-            FD_ISSET(serv->clients[i].sock_fd, &(serv->readfds))) {
-            send(serv->clients[i].sock_fd, "ping\n", 5, 0);
+        if (serv->clients[i].connect == true) {
+//            send(serv->clients[i].sock_fd, "ping\n", 5, 0);
         }
     }
 }
 
 int get_new_client(struct server_in *serv)
 {
-    int new_socket = accept(serv->server_fd, (struct sockaddr *)&(serv->addr), (socklen_t *)&(serv->addrlen));
+    int new_socket = 0;
 
-    if (FD_ISSET(new_socket, &(serv->readfds))) {
-        printf("new_client accpet\n");
+    if (FD_ISSET(serv->server_fd, &(serv->readfds))) {
+        printf("New client connected\n");
+        new_socket = accept(serv->server_fd, (struct sockaddr *)&(serv->addr), (socklen_t *)&(serv->addrlen));
         if (new_socket < 0) {
-            printf("tmr\n");
+            perror("accept");
             return -1;
         }
         if (send(new_socket, INCOME_MESS, SIZE_INCOME_MESS, 0) != SIZE_INCOME_MESS) {
@@ -68,6 +69,7 @@ int get_new_client(struct server_in *serv)
         for (int i = 0; i < MAX_CLIENTS; i++) {
             if (serv->clients[i].connect == false) {
                 serv->clients[i].sock_fd = new_socket;
+                serv->clients[i].connect = true;
                 break;
             }
         }
@@ -78,14 +80,13 @@ int get_new_client(struct server_in *serv)
 int connect_clients(struct server_in *serv)
 {
     int max_socket = 0;
-    struct timeval timeout = {2, 1};
+    struct timeval timeout = {5, 1};
 
     intialize_fdset(serv);
-    printf("hey after initiliaze\n");
     while (1) {
         max_socket = update_clients(serv);
-        if (select(max_socket, &(serv->readfds), NULL, NULL, &timeout)) {
-            printf("select fail\n");
+        if (select(max_socket + 1, &(serv->readfds), NULL, NULL, &timeout) < 0) {
+            perror("select");
             return EXIT_FAIL;
         }
         get_new_client(serv);

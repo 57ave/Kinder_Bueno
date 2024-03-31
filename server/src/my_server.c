@@ -6,6 +6,7 @@
 */
 
 #include <netinet/in.h>
+#include <arpa/inet.h>
 #include "macro.h"
 #include "my_socket.h"
 #include <string.h>
@@ -35,9 +36,8 @@ int my_server(void)
     serv.server_fd = socket(AF_INET, SOCK_STREAM, 0);
     serv.addr.sin_family = AF_INET;
     serv.addr.sin_port = htons(PORT);
-    serv.addr.sin_addr.s_addr = INADDR_ANY;
+    serv.addr.sin_addr.s_addr = inet_addr("0.0.0.0");
     serv.addrlen = sizeof(struct sockaddr_in);
-    printf("fd %i\n", serv.server_fd);
     if (serv.server_fd == EXIT_FAIL) {
         perror("Socket creation failed");
         return EXIT_FAIL;

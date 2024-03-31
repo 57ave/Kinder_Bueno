@@ -11,7 +11,8 @@
     #include <netinet/in.h>
     #include <stdbool.h>
 
-    #define MAX_CLIENTS 2
+    #define MAX_CLIENTS 5
+    #define BUFFER_MAX 3000
     #define INCOME_MESS "Let's go connexion made\n"
     #define SIZE_INCOME_MESS 25
 

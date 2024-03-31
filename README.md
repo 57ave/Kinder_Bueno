@@ -18,5 +18,5 @@ To improve my network knowledge in C i decided to create my own server to use it
   Run the binary :
   ``` ./client ```
   
-  Then you get a comfirmation message for the connexion.
+  Then you get a confirmation message for the connexion.
   Now you can type any message and send it with ```\n```

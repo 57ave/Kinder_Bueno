@@ -44,9 +44,12 @@ int update_clients(struct server_in *serv)
 
 void find_active_client(struct server_in *serv)
 {
+    char buffer[BUFFER_MAX] = {0};
+
     for (int i = 0; i < MAX_CLIENTS; i++) {
         if (serv->clients[i].connect == true) {
-//            send(serv->clients[i].sock_fd, "ping\n", 5, 0);
+            recv(serv->clients[i].sock_fd, buffer, BUFFER_MAX, 0);
+            printf("Receive from client_%i : %s\n", i, buffer);
         }
     }
 }

@@ -14,6 +14,7 @@ CFLAGS = -Wall -Wextra
 SRC	=	src/main.c 	\
 		src/my_server.c \
 		src/connect_clients.c 	\
+		src/handle_client.c 	\
 
 CC	=	clang
 

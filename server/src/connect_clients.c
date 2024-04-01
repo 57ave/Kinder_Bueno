@@ -48,8 +48,7 @@ void find_active_client(struct server_in *serv)
 
     for (int i = 0; i < MAX_CLIENTS; i++) {
         if (serv->clients[i].connect == true) {
-            recv(serv->clients[i].sock_fd, buffer, BUFFER_MAX, 0);
-            printf("Receive from client_%i : %s\n", i, buffer);
+            handle_client(serv, buffer, i);
         }
     }
 }

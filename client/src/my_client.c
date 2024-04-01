@@ -28,8 +28,8 @@ int client_loop(struct client_in *client)
         if (getline(&buffer_send, &n, stdin) < 0) {
             connected = false;
         }
-        printf("buffer send >%s\n", buffer_send);
-        send(client->socket, buffer_send, my_strlen(buffer_send), 0);
+        clean_line(buffer_recv);
+        send_request(client, buffer_recv);
     }
     return EXIT_SUCCESS;
 }
@@ -41,7 +41,7 @@ int my_client(void)
     client.addr.sin_family = AF_INET;
     client.addr.sin_port = htons(PORT);
     client.addrlen = sizeof(client.addr);
-    if (inet_pton(AF_INET, "192.168.1.188", &(client.addr.sin_addr)) <= 0) {
+    if (inet_pton(AF_INET, "192.168.1.64", &(client.addr.sin_addr)) <= 0) {
         perror("inet_pton");
         return EXIT_FAIL;
     }

@@ -8,6 +8,8 @@
 #ifndef MY_STRING_H
     #define MY_STRING_H
 
+void clean_line(char *str);
+
 char *my_strdup_delim(char *src, char delim);
 
 int my_strlen(char *str);

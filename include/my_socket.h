@@ -12,7 +12,7 @@
     #include <stdbool.h>
 
     #define MAX_CLIENTS 5
-    #define BUFFER_MAX 3000
+    #define BUFFER_MAX 3200
     #define INCOME_MESS "Let's go connexion made\n"
     #define SIZE_INCOME_MESS 25
 
@@ -32,5 +32,7 @@ struct server_in {
 };
 
 int connect_clients(struct server_in *serv);
+
+int handle_client(struct server_in *serv, char buffer[BUFFER_MAX], int client_id);
 
 #endif /* !MY_SOCKET_H_ */

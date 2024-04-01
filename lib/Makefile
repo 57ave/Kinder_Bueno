@@ -21,7 +21,8 @@ STR_LIB 	= 	string/my_strdup_delim.c \
 				string/my_perror.c 	\
 				string/my_strcmp.c 	\
 				string/my_stwa.c 	\
-				string/my_strcat.c
+				string/my_strcat.c 	\
+				string/clean_line.c
 
 BTREE_LIB 	= 	bin_tree/btree_apply_infix.c	\
 				bin_tree/btree_apply_prefix.c	\

@@ -10,6 +10,9 @@ You can see how to launch to server and then the client just bellow with termina
   Build the server binary with :
   ``` make ```
 
+  Get the ip to launch the client :
+  ``` chmod +x ./script/getIP.sh && ./script/getIP.sh ```
+
   Move to the directory :
   ``` cd server/ ```
 
@@ -25,7 +28,7 @@ You can see how to launch to server and then the client just bellow with termina
   ```cd client/```
 
   Run the binary :
-  ``` ./client ```
+  ``` ./client {IP}```
   
   Then you get a confirmation message for the connexion.
-  Now you can type any message and send it with ```\n```
+  Now you can type ```sign-in``` to register to the server, then you enter Username and Password

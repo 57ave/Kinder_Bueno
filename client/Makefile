@@ -13,6 +13,8 @@ CFLAGS = -Wall -Wextra
 
 SRC	=	src/main.c 	\
 		src/my_client.c	\
+		src/send_request.c 	\
+		src/sign_action.c 	\
 
 LDFLAGS += -lmy
 

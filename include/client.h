@@ -11,7 +11,7 @@
     #include <stddef.h>
     #include "my_socket.h"
 
-int my_client(void);
+int my_client(char *ip);
 
 struct client_in {
     int socket;

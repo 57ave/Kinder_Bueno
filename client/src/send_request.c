@@ -13,7 +13,7 @@ int send_request(struct client_in *client, char *buffer)
 {
     int exit_status = 0;
 
-    for (int i = 0; REQ_TAB[i].method != -1; i++) {
+    for (int i = 0; REQ_TAB[i].method != LAST_METHOD; i++) {
         if (my_strcmp(REQ_TAB[i].action, buffer)) {
             exit_status = REQ_TAB[i].pf(client, REQ_TAB[i].method);
         }

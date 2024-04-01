@@ -34,14 +34,14 @@ int client_loop(struct client_in *client)
     return EXIT_SUCCESS;
 }
 
-int my_client(void)
+int my_client(char *ip)
 {
     struct client_in client;
 
     client.addr.sin_family = AF_INET;
     client.addr.sin_port = htons(PORT);
     client.addrlen = sizeof(client.addr);
-    if (inet_pton(AF_INET, "192.168.1.64", &(client.addr.sin_addr)) <= 0) {
+    if (inet_pton(AF_INET, ip, &(client.addr.sin_addr)) <= 0) {
         perror("inet_pton");
         return EXIT_FAIL;
     }

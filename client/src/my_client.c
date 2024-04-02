@@ -18,18 +18,18 @@
 int client_loop(struct client_in *client)
 {
     bool connected = true;
-    char *buffer_send = NULL;
+    char *buffer_input = NULL;
     size_t n = 0;
     char buffer_recv[SIZE_INCOME_MESS] = {0};
 
     recv(client->socket, buffer_recv, SIZE_INCOME_MESS, 0);
     printf("%s\n", buffer_recv);
     while (connected) {
-        if (getline(&buffer_send, &n, stdin) < 0) {
+        if (getline(&buffer_input, &n, stdin) < 0) {
             connected = false;
         }
-        clean_line(buffer_recv);
-        send_request(client, buffer_recv);
+        clean_line(buffer_input);
+        send_request(client, buffer_input);
     }
     return EXIT_SUCCESS;
 }

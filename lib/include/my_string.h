@@ -22,4 +22,10 @@ char **my_stwa(char *str, char *delim);
 
 char *my_strcat_char(char *dest, char *src, char c);
 
+char *my_strcpy(char *dest, char *src);
+
+char *my_strdup(char *str);
+
+int my_put_nbr(int nb);
+
 #endif /* MY_STRING_H */

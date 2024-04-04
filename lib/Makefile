@@ -22,7 +22,10 @@ STR_LIB 	= 	string/my_strdup_delim.c \
 				string/my_strcmp.c 	\
 				string/my_stwa.c 	\
 				string/my_strcat.c 	\
-				string/clean_line.c
+				string/clean_line.c \
+				string/my_strcpy.c 	\
+				string/my_put_nbr.c \
+				string/my_strdup.c
 
 BTREE_LIB 	= 	bin_tree/btree_apply_infix.c	\
 				bin_tree/btree_apply_prefix.c	\
@@ -33,6 +36,15 @@ BTREE_LIB 	= 	bin_tree/btree_apply_infix.c	\
 				bin_tree/btree_level_count.c	\
 				bin_tree/btree_search_item.c	\
 
+HASH_LIB  	= 	hashtable/apply_hashtable.c 	\
+				hashtable/delete_hashtable.c 	\
+				hashtable/hash.c \
+				hashtable/ht_delete.c 	\
+				hashtable/ht_dump.c 	\
+				hashtable/ht_insert.c 	\
+				hashtable/ht_search.c 	\
+				hashtable/new_hashtable.c
+
 CFLAGS 	=	 -Wall -Wextra
 
 CPPFLAGS += -iquote "include"
@@ -40,7 +52,8 @@ CPPFLAGS += -iquote "include"
 SRC = 	$(LIST_LIB) \
 		$(STD_LIB) 	\
 		$(STR_LIB) 	\
-		$(BTREE_LIB)
+		$(BTREE_LIB) \
+		$(HASH_LIB)
 
 OBJ    =    $(SRC:.c=.o)
 
@@ -49,7 +62,8 @@ NAME_LIB   =    libmy.a
 NAME_HEADER    =	include/my_list.h 	\
 					include/my_stdlib.h \
 					include/my_string.h \
-					include/btree.h
+					include/btree.h 	\
+					include/hashtable.h
 
 all: $(NAME_LIB)
 

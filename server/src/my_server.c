@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "sys/time.h"
+#include "account.h"
 
 int recv_and_send(int new_socket)
 {
@@ -33,6 +34,7 @@ int my_server(void)
 {
     struct server_in serv;
 
+    serv.ht = init_account_tab();
     serv.server_fd = socket(AF_INET, SOCK_STREAM, 0);
     serv.addr.sin_family = AF_INET;
     serv.addr.sin_port = htons(PORT);

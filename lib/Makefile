@@ -25,7 +25,8 @@ STR_LIB 	= 	string/my_strdup_delim.c \
 				string/clean_line.c \
 				string/my_strcpy.c 	\
 				string/my_put_nbr.c \
-				string/my_strdup.c
+				string/my_strdup.c \
+				string/my_strncat.c
 
 BTREE_LIB 	= 	bin_tree/btree_apply_infix.c	\
 				bin_tree/btree_apply_prefix.c	\

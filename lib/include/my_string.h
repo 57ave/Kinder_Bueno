@@ -28,4 +28,6 @@ char *my_strdup(char *str);
 
 int my_put_nbr(int nb);
 
+char *my_strncat(char *, char const *, int n);
+
 #endif /* MY_STRING_H */

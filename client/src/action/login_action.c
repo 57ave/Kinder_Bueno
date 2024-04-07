@@ -49,7 +49,7 @@ int handle_login(struct client_in *client, method_t method)
     }
     printf("\nUsername : %s\nPassword : %s\n", user_info.key, user_info.value);
     buffer[0] = (char)method;
-    my_strncat(buffer, "SIGN-IN", 7);
+    my_strncat(buffer, "LOGIN", 6);
     send(client->socket, buffer, BUFFER_MAX, 0);
     send(client->socket, &user_info, sizeof(struct data_128), 0);
     if (handle_response(client, &user_info))

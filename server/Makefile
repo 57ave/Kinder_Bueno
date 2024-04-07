@@ -9,12 +9,19 @@ NAME =	server
 
 CPPFLAGS += -iquote "../include"	\
 
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -fshort-enums
+
+LDFLAGS += -lmy
+
+LDLIBS += -L../
 
 SRC	=	src/main.c 	\
 		src/my_server.c \
 		src/connect_clients.c 	\
 		src/handle_client.c 	\
+		src/account_handling/register_account.c 	\
+		src/account_handling/login_account.c 	\
+		src/account_handling/manage_account_tab.c
 
 CC	=	clang
 
@@ -23,7 +30,7 @@ OBJ = 	$(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+	$(CC) $(OBJ) -o $(NAME) $(LDLIBS) $(LDFLAGS)
 
 clean:
 	$(RM) $(OBJ)

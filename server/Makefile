@@ -21,7 +21,8 @@ SRC	=	src/main.c 	\
 		src/handle_client.c 	\
 		src/account_handling/register_account.c 	\
 		src/account_handling/login_account.c 	\
-		src/account_handling/manage_account_tab.c
+		src/account_handling/manage_account_tab.c 	\
+		src/account_handling/already_exist_account.c
 
 CC	=	clang
 

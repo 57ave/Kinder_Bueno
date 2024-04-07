@@ -23,6 +23,7 @@
 typedef struct client {
     int sock_fd;
     bool connect;
+    char username[128];
 } client_t;
 
 struct server_in {

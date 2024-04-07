@@ -7,8 +7,8 @@
 
 #pragma once
 
-struct data {
-    char *key;
-    char *value;
+struct data_128 {
+    char key[128];
+    char value[128];
 };
 

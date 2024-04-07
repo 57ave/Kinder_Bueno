@@ -17,6 +17,7 @@ struct client_in {
     int socket;
     struct sockaddr_in addr;
     socklen_t addrlen;
+    char username[128];
 };
 
 typedef enum method {
@@ -36,17 +37,22 @@ struct request_model {
 
 struct request_data {
     method_t method;
-    short int current_packet;
-    short int total_packet;
-    char buffer[BUFFER_MAX];
+    short unsigned int size;
+    char *buffer;
+    char end;
 };
 
 int handle_signin(struct client_in *client, method_t method);
 
+int handle_login(struct client_in *client, method_t method);
+
 int send_request(struct client_in *client, char *buffer);
 
+int get_user_info(struct data_128 *user_info, size_t n);
+
 static const struct request_model REQ_TAB[] = {
-    {POST, "SIGN-IN", &handle_signin},
+    {CONNECT, "SIGN-IN", &handle_signin},
+    {CONNECT, "LOGIN", &handle_login},
     {LAST_METHOD, NULL, NULL}
 };
 

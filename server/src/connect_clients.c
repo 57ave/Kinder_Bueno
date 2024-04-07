@@ -19,7 +19,11 @@ void intialize_fdset(struct server_in *serv)
     FD_ZERO(&(serv->readfds));
     FD_SET(serv->server_fd, &(serv->readfds));
     for (int i = 0; i < MAX_CLIENTS; i++) {
-        serv->clients[i] = (client_t){.connect = 0, .sock_fd = 0};
+        serv->clients[i] = (client_t){
+        .connect = 0,
+        .sock_fd = 0,
+        .username[0] = '\0'
+        };
     }
 }
 

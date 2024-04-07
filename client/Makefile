@@ -9,12 +9,13 @@ NAME =	client
 
 CPPFLAGS += -iquote "../include"	\
 
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -fshort-enums
 
 SRC	=	src/main.c 	\
 		src/my_client.c	\
 		src/send_request.c 	\
-		src/sign_action.c 	\
+		src/action/sign_action.c 	\
+		src/action/login_action.c
 
 LDFLAGS += -lmy
 

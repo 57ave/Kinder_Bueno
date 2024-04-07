@@ -10,6 +10,8 @@
     #include <sys/select.h>
     #include <netinet/in.h>
     #include <stdbool.h>
+    #include "my_unistd.h"
+    #include "hashtable.h"
 
     #define MAX_CLIENTS 5
     #define BUFFER_MAX 3200
@@ -29,10 +31,12 @@ struct server_in {
     socklen_t addrlen;
     fd_set readfds;
     client_t clients[MAX_CLIENTS];
+    hashtable_t *ht;
 };
 
 int connect_clients(struct server_in *serv);
 
-int handle_client(struct server_in *serv, char buffer[BUFFER_MAX], int client_id);
+int handle_client_request(
+    struct server_in *serv, char buffer[BUFFER_MAX], int client_id);
 
 #endif /* !MY_SOCKET_H_ */

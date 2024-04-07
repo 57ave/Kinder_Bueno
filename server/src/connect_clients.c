@@ -48,7 +48,7 @@ void find_active_client(struct server_in *serv)
 
     for (int i = 0; i < MAX_CLIENTS; i++) {
         if (serv->clients[i].connect == true) {
-            handle_client(serv, buffer, i);
+            handle_client_request(serv, buffer, i);
         }
     }
 }
@@ -67,7 +67,6 @@ int get_new_client(struct server_in *serv)
         if (send(new_socket, INCOME_MESS, SIZE_INCOME_MESS, 0) != SIZE_INCOME_MESS) {
             perror("send");
         }
-        write(new_socket, "Welcome bro\n", 12);
         for (int i = 0; i < MAX_CLIENTS; i++) {
             if (serv->clients[i].connect == false) {
                 serv->clients[i].sock_fd = new_socket;

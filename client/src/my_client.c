@@ -41,6 +41,7 @@ int my_client(char *ip)
     client.addr.sin_family = AF_INET;
     client.addr.sin_port = htons(PORT);
     client.addrlen = sizeof(client.addr);
+    client.username[0] = '\0';
     if (inet_pton(AF_INET, ip, &(client.addr.sin_addr)) <= 0) {
         perror("inet_pton");
         return EXIT_FAIL;

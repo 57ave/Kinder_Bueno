@@ -21,15 +21,19 @@ int client_loop(struct client_in *client)
     char *buffer_input = NULL;
     size_t n = 0;
     char buffer_recv[SIZE_INCOME_MESS] = {0};
+    struct timeval tv = {0, 2500000};
+    fd_set fds;
+    FD_ZERO(&fds);
 
     recv(client->socket, buffer_recv, SIZE_INCOME_MESS, 0);
     printf("%s\n", buffer_recv);
     while (connected) {
-        if (getline(&buffer_input, &n, stdin) < 0) {
-            connected = false;
+        FD_SET(STDIN_FILENO, &fds);
+        if (select(STDIN_FILENO + 1, &fds, NULL, NULL, &tv) > 0) {
+            getline(&buffer_input, &n, stdin);
+            send_request(client, buffer_input);
         }
-        clean_line(buffer_input);
-        send_request(client, buffer_input);
+        recv_request(client);
     }
     return EXIT_SUCCESS;
 }

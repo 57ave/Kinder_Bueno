@@ -22,7 +22,7 @@ struct client_in {
 
 typedef enum method {
     CONNECT = 1,
-    GET,
+    SEND,
     POST,
     PATCH,
     DELETE,
@@ -46,13 +46,18 @@ int handle_signin(struct client_in *client, method_t method);
 
 int handle_login(struct client_in *client, method_t method);
 
+int handle_send(struct client_in *client, method_t method);
+
 int send_request(struct client_in *client, char *buffer);
+
+int recv_request(struct client_in *);
 
 int get_user_info(struct data_128 *user_info, size_t n);
 
 static const struct request_model REQ_TAB[] = {
     {CONNECT, "SIGN-IN", &handle_signin},
     {CONNECT, "LOGIN", &handle_login},
+    {SEND, "SEND", &handle_send},
     {LAST_METHOD, NULL, NULL}
 };
 

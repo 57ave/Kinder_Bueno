@@ -73,7 +73,7 @@ int handle_signin(struct client_in *client, method_t method)
 
     if (client->username[0] != 0) {
         printf("already connected\n");
-        return EXIT_SUCCESS;
+        return EXIT_FAIL;
     }
     if (get_user_info(&user_info, n) == EXIT_FAIL) {
         return EXIT_FAIL;

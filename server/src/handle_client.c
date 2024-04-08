@@ -24,7 +24,7 @@ int connect_method_handler(struct server_in *serv, char buffer[BUFFER_MAX], int 
         perror("recv");
         return EXIT_FAIL;
     }
-    if (check_connected_account(serv, &user_data) == EXIT_SUCCESS)
+    if (check_connected_account(serv, &user_data) != EXIT_FAIL)
         return already_connected_account(serv->clients[client_id].sock_fd);
     if (my_strcmp("SIGN-IN", buffer) == 0) {
         return_value = register_account(serv->ht, serv->clients[client_id].sock_fd, &user_data);

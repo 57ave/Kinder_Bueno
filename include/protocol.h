@@ -16,7 +16,10 @@ struct method_handler {
 
 int connect_method_handler(struct server_in *, char buffer[BUFFER_MAX], int);
 
+int send_method_handler(struct server_in *, char buffer[BUFFER_MAX], int);
+
 static const struct method_handler METHOD_HANDLE[] = {
     {CONNECT, &connect_method_handler},
+    {SEND, &send_method_handler},
     {LAST_METHOD, NULL}
 };

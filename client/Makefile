@@ -15,7 +15,9 @@ SRC	=	src/main.c 	\
 		src/my_client.c	\
 		src/send_request.c 	\
 		src/action/sign_action.c 	\
-		src/action/login_action.c
+		src/action/login_action.c 	\
+		src/recv_request.c 	\
+		src/action/send_action.c 	\
 
 LDFLAGS += -lmy
 

@@ -17,8 +17,7 @@ int check_connected_account(struct server_in *serv, struct data_128 *data)
 {
     for (int i = 0; i < MAX_CLIENTS; i++) {
         if (my_strcmp(data->key, serv->clients[i].username) == 0) {
-            printf("user already connected\n");
-            return EXIT_SUCCESS;
+            return i;
         }
     }
     return EXIT_FAIL;

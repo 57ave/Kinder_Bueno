@@ -31,4 +31,7 @@ You can see how to launch to server and then the client just bellow with termina
   ``` ./client {IP}```
   
   Then you get a confirmation message for the connexion.
-  Now you can type ```sign-in``` to register to the server, then you enter Username and Password
+  Now you can type : 
+  - ```SIGN-IN``` to register to the server, then you enter Username and Password.
+  - ```LOGIN``` to login into the server you to already hace create the account.
+  - ```SEND``` to type a message to someone you have to type the username and then the message.
